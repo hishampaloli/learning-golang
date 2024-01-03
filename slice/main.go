@@ -26,5 +26,5 @@ func main() {
 	fmt.Println((sort.IntsAreSorted(highScores)))
 
 	highScores = append(highScores[:2], highScores[2+1:]...)
-	fmt.Println(highScores)
+
 }
