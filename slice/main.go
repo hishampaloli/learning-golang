@@ -8,7 +8,7 @@ import (
 func main() {
 	var fruitList = []string{"apple", "tom"}
 
-	fruitList = append(fruitList, "Mango", "Banana")
+	fruitList = append(fruitList, "Mango", "Bandana")
 	fmt.Println(fruitList)
 
 	fruitList = append(fruitList[1:])
