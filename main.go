@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 const conferenceName string = "Go Conference"
 const conferenceTickets int = 10
@@ -24,6 +27,27 @@ func getUserInput(userName *string, lastName *string, email *string, userTickets
 }
 
 
+func validateUserInputs(firstName string, lastName string, email string) bool {
+	if !strings.Contains(email,"@") {
+		fmt.Println("Please enter the correct email")	
+		return false		
+	} else if len(firstName) <= 2 || len(lastName) <= 2 {
+		fmt.Println("Please enter the correct name")	
+		return false		
+	}
+	return true
+}
+
+func validateUserTickets(userTickets int)bool{
+	if uint(userTickets) > remainingTickets{
+		fmt.Printf("Sorry, only %v tickets left\n", remainingTickets)
+		return false
+	}
+	return true
+}
+
+
+
 func main(){
 	
 
@@ -38,7 +62,10 @@ func main(){
 		
 		getUserInput(&userName, &lastName, &email, &userTickets)
 
-		
+		if !validateUserInputs(userName,lastName,email) || !validateUserTickets(userTickets) {
+			continue
+		}
+
 		remainingTickets = remainingTickets - uint(userTickets)
 	
 		fmt.Printf("Thank you %v %v for booking %v tickets for %v, the details will be mailed to %v \n", userName,lastName,userTickets,conferenceName,email)
