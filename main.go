@@ -28,14 +28,14 @@ func getUserInput(userName *string, lastName *string, email *string, userTickets
 
 
 func validateUserInputs(firstName string, lastName string, email string) bool {
-	if !strings.Contains(email,"@") {
-		fmt.Println("Please enter the correct email")	
-		return false		
-	} else if len(firstName) <= 2 || len(lastName) <= 2 {
-		fmt.Println("Please enter the correct name")	
-		return false		
-	}
-	return true
+		if !strings.Contains(email,"@") {
+			fmt.Println("Please enter the correct email")	
+			return false		
+		} else if len(firstName) <= 2 || len(lastName) <= 2 {
+			fmt.Println("Please enter the correct name")	
+			return false		
+		}
+		return true
 }
 
 func validateUserTickets(userTickets int)bool{
@@ -56,36 +56,37 @@ func printBooking(){
 	fmt.Printf("This are the attentees coming for the conferece := %v \n",firstNames)
 }
 
+func handleUpdateTickets(remainingTickets *uint, bookings *[]string, userTickets uint, userName string) {
+	*remainingTickets -= userTickets
+	*bookings = append(*bookings, userName)
+	
+	fmt.Printf("Thank you %v  for booking %v tickets, the details will be mailed to you \n", userName,userTickets)
+	fmt.Printf("%v are still remaining for you frients to join\n", *remainingTickets)
+}
 
 func main(){
 	
-
 	greetUser()
-
-	var userName string
-	var lastName string
-	var email string
-	var userTickets int
-
+	
 	for {
-		
+		var userName string
+		var lastName string
+		var email string
+		var userTickets int
+	
 		getUserInput(&userName, &lastName, &email, &userTickets)
 
 		if !validateUserInputs(userName,lastName,email) || !validateUserTickets(userTickets) {
 			continue
-		}
+		}		
 
-		remainingTickets = remainingTickets - uint(userTickets)
-	
+		handleUpdateTickets(&remainingTickets,&bookings,uint(userTickets), userName + " " + lastName)
 		printBooking()
-
 		if int(remainingTickets) <= 0 {
 			fmt.Println("Woof, you were the last to book, All slots are complted")
 			break
 		}
 	}
-
 	
-	// main().
 }
 
