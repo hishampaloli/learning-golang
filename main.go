@@ -2,14 +2,22 @@ package main
 
 import "fmt"
 
-func main(){
-	conferenceName := "Go Conference"
-	const conferenceTickets int = 50
-	var remainingTickets uint = 50
+const conferenceName string = "Go Conference"
+const conferenceTickets int = 10
+var remainingTickets uint = uint(conferenceTickets)
+var bookings []string
 
+func greetUser(){
 	fmt.Printf("Welocme to our %v booking application \n", conferenceName)
-	fmt.Printf("We have total of %v tickets and %v are still available",conferenceTickets, remainingTickets)
+	fmt.Printf("We have total of %v tickets and %v are still available\n",conferenceTickets, remainingTickets)
 
+}
+
+func main(){
+	
+
+	greetUser()
+	
 	var userName string
 	var lastName string
 	var email string
