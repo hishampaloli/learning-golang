@@ -47,6 +47,15 @@ func validateUserTickets(userTickets int)bool{
 }
 
 
+func printBooking(){
+	firstNames := []string{}
+	for _, booking:= range bookings{
+		var firstName = strings.Fields(booking)[0]
+		firstNames = append(firstNames, firstName)	
+	}
+	fmt.Printf("This are the attentees coming for the conferece := %v \n",firstNames)
+}
+
 
 func main(){
 	
@@ -68,10 +77,7 @@ func main(){
 
 		remainingTickets = remainingTickets - uint(userTickets)
 	
-		fmt.Printf("Thank you %v %v for booking %v tickets for %v, the details will be mailed to %v \n", userName,lastName,userTickets,conferenceName,email)
-	
-		fmt.Printf("%v are still remaining for you frients to join", remainingTickets)
-
+		printBooking()
 
 		if int(remainingTickets) <= 0 {
 			fmt.Println("Woof, you were the last to book, All slots are complted")
