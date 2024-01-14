@@ -13,6 +13,17 @@ func greetUser(){
 
 }
 
+func getUserInput(userName *string, lastName *string, email *string, userTickets *int){
+	userInputMessages := []string {"Enter you first name: ", "Enter you last name: ", "Enter you email: ", "Please enter the number of tickets to purchase"}
+	userInputs := []interface{}{userName, lastName, email, userTickets}
+
+	for index, message := range userInputMessages {
+		fmt.Println(message)
+		fmt.Scan(userInputs[index])
+	}
+}
+
+
 func main(){
 	
 
@@ -24,18 +35,10 @@ func main(){
 	var userTickets int
 
 	for {
-		fmt.Println("Enter you first name: ")
-		fmt.Scan(&userName)
-	
-		fmt.Println("Enter you last name: ")
-		fmt.Scan(&lastName)
-	
-		fmt.Println("Enter you email: ")
-		fmt.Scan(&email)
-	
-		fmt.Println("Enter the number of tickets you need: ")
-		fmt.Scan(&userTickets)
-	
+		
+		getUserInput(&userName, &lastName, &email, &userTickets)
+
+		
 		remainingTickets = remainingTickets - uint(userTickets)
 	
 		fmt.Printf("Thank you %v %v for booking %v tickets for %v, the details will be mailed to %v \n", userName,lastName,userTickets,conferenceName,email)
